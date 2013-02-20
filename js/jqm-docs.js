@@ -57,7 +57,7 @@ if ( location.protocol.substr(0,4)  === 'file' ||
     $( document ).bind( "mobileinit", function() {
       $.mobile.ajaxEnabled = false;
 
-      var message = $( '<div>' , {
+      /*var message = $( '<div>' , {
         'class': "ui-footer ui-bar-e",
         style: "overflow: auto; padding:10px 15px;",
         'data-ajax-warning': true
@@ -69,7 +69,7 @@ if ( location.protocol.substr(0,4)  === 'file' ||
 
       $( document ).bind( "pagecreate", function( event ) {
         $( event.target ).append( message );
-      });
+      });*/
     });
   });
 }
