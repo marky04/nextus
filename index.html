@@ -1,86 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>Nextus</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="no-index, no-follow" /><!--index, follow-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet"  href="css/jquery.mobile-1.2.0.min.css" />
-	<link rel="stylesheet" href="css/jqm-docs.css"/>
+	<meta http-equiv="description" content="" />
+	<meta http-equiv="keywords" content="" />
+	<meta name="author" content="">
+
+	<!-- CSS -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/jquery.treeview.css" rel="stylesheet">
+	<link href="css/youtube_styles.css" rel="stylesheet" />
+	<link href="css/youTubeEmbed-jquery-1.0.css" rel="stylesheet" />
+
+	<style>
+		#header{
+			position:fixed;
+			top:0;
+			height:50px;
+		}
+		#main_content{
+			padding:46px 0 135px;
+		}
+		#footer{
+			background:#fff;
+			position:fixed;
+			left:0;
+			bottom:0;
+			width:100%;
+			height:110px;
+			padding:10px 0;
+		}
+		#footer .main{
+			width:275px;
+			margin:0 auto;
+		}
+		#footer .btn{
+			width:55px;
+			margin:0 12px 10px 0;
+		}
+		#footer .btn.last-row-child{
+			margin-right:0;
+		}
+	</style>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div id="wrap">
+		<div id="main_content"></div>
+		<div id="push"></div>
+	</div>
+	<div id="footer">
+		<div class="main">
+			<a onClick="AjaxReponse('http://mobile.nextus.asia/', 'main_content', 'home');" class="btn btn-primary" id="home">
+				<i class="icon-home icon-white"></i><br />
+				Home
+			</a>
+			<a onClick="AjaxReponse('http://mobile.nextus.asia/index.php/dashboard/id/1', 'main_content', 'about_us');" class="btn" id="about_us">
+				<i class="icon-map-marker"></i><br />
+				About
+			</a>
+			<a onClick="AjaxReponse('http://mobile.nextus.asia/index.php/category', 'main_content', 'category');" class="btn last-row-child" id="category">
+				<i class="icon-tasks"></i><br />
+				Category
+			</a>
+			<a onClick="AjaxReponse('http://mobile.nextus.asia/index.php/news', 'main_content', 'news');" class="btn" id="news">
+				<i class="icon-list-alt"></i><br />
+				News
+			</a>
+			<a onClick="AjaxReponse('http://mobile.nextus.asia/index.php/pdf', 'main_content', 'pdf');" class="btn" id="pdf">
+				<i class="icon-book"></i><br />
+				Brochure
+			</a>
+			<a onClick="AjaxReponse('http://mobile.nextus.asia/index.php/youtube', 'main_content', 'youtube');" class="btn last-row-child" id="youtube">
+				<i class="icon-film"></i><br />
+				YouTube
+			</a>
+		</div>
+	</div>
+	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="js/jquery.js"></script>
 	<script type="text/javascript">
-	$.support.cors = true;
-	$(document).bind( "mobileinit", function(){
-		$.mobile.allowCrossDomainPages = true;
-		$.mobile.pushStateEnabled = false;
-	});
-
-	AjaxReponse('http://nextus.asia/phonegap/home.php', 'main_content', 'Home');
-	function AjaxReponse(link, result_holder, title)
+	//AjaxReponse('http://localhost/ci/', 'main_content', 'home');
+	AjaxReponse('http://mobile.nextus.asia/', 'main_content', 'home');
+	function AjaxReponse(link, result_holder, nav_id)
 	{
+		$('#' + result_holder).html('<div class="progress progress-striped active" style="margin-top:80px;"><div class="bar" style="width: 50%;"></div></div>');
+	
+		$('#footer .main a').removeClass('btn-primary');
+		$('#footer .main a i').removeClass('icon-white');
+		$('#' + nav_id).addClass('btn-primary');
+		$('#' + nav_id + ' i').addClass('icon-white');
+		
 		$.ajax({
 			url: link,
-			success: function(data) {			
-				
-				$('title').html(title);
-				$('#home h1').html(title);
-
-				if(title == 'Home')
-				{
-					$('#back_to_home').hide();
-					$('a').removeClass('ui-btn-active');
-				}
-				else
-				{
-					$('#back_to_home').show();
-				}
-
+			success: function(data) {
 				$('#' + result_holder).html(data);
-
-				//this will load the content using jquery Mobile format
-				$('#' + result_holder).trigger('create');
 			}
 		});
 	}
 	</script>
-	<script src="js/jqm-docs.js"></script>
-	<script src="js/jquery.mobile-1.2.0.min.js"></script>
-</head>
-
-<body>
-<!-- Start of first page -->
-<div data-role="page" data-theme="d" id="home" data-title="Home">
-	<div data-role="header" data-theme="d" data-position="fixed">
-		<a href="#" id="back_to_home" onClick="AjaxReponse('http://nextus.asia/phonegap/home.php', 'main_content', 'Home');" data-icon="home" data-iconpos="notext" data-direction="reverse" style="display:none;">Home</a>
-		<h1>Nextus</h1>
-	</div><!-- /header -->
-
-	<div id="main_content" data-role="content"></div><!-- /content -->
-	<div data-role="footer" data-theme="d" data-position="fixed">
-		<div data-role="navbar">
-			<ul>
-				<li>
-					<a href="#" onClick="AjaxReponse('http://nextus.asia/phonegap/news.php', 'main_content', 'News');" data-icon="gear">
-						News
-					</a>
-				</li>
-				<li>
-					<a href="#" onClick="AjaxReponse('http://nextus.asia/phonegap/services.php', 'main_content', 'Services');" data-icon="star">
-						Services
-					</a>
-				</li>
-				<li>
-					<a href="#" onClick="AjaxReponse('http://nextus.asia/phonegap/about.php', 'main_content', 'About Us');" data-icon="gear">
-						About Us
-					</a>
-				</li>
-				<li>
-					<a href="#" onClick="AjaxReponse('http://nextus.asia/phonegap/contact.php', 'main_content', 'Contact');" data-icon="forward">
-						Contact
-					</a>
-				</li>
-			</ul>
-		</div><!-- /navbar -->
-	</div><!-- /footer -->
-</div><!-- /page -->
+	<script src="js/bootstrap-transition.js"></script>
+	<script src="js/bootstrap-alert.js"></script>
+	<script src="js/bootstrap-modal.js"></script>
+	<script src="js/bootstrap-dropdown.js"></script>
+	<script src="js/bootstrap-scrollspy.js"></script>
+	<script src="js/bootstrap-tab.js"></script>
+	<script src="js/bootstrap-tooltip.js"></script>
+	<script src="js/bootstrap-popover.js"></script>
+	<script src="js/bootstrap-button.js"></script>
+	<script src="js/bootstrap-collapse.js"></script>
+	<script src="js/bootstrap-carousel.js"></script>
+	<script src="js/bootstrap-typeahead.js"></script>
+	<script src="js/holder.js"></script>
+	<script src="js/jquery.treeview.js"></script>
+	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/childbrowser.js"></script>
 </body>
 </html>
