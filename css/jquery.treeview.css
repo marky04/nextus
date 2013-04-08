@@ -43,16 +43,17 @@
 .treeview li { background: url(../images/treeview-default-line.gif) 0 0 no-repeat; }
 .treeview li.collapsable, .treeview li.expandable { background-position: 0 -176px; }
 
-.lastCollapsable .lastCollapsable-hitarea, .lastExpandable .lastExpandable-hitarea{ background:url(../images/treeview-default.gif) -80px -3px no-repeat;}
+.lastCollapsable .lastCollapsable-hitarea, .lastExpandable .lastExpandable-hitarea{ background:url("../images/glyphicons-halflings.png") -240px -144px no-repeat;}
 .treeview .expandable-hitarea { background-position: -240px -144px; }
 .treeview .collapsable-hitarea { background-position: -312px -144px; }
 
 .treeview li.last { background-position: 0 -1766px }
-.treeview li.lastCollapsable, .treeview li.lastExpandable { background-image: url(../images/treeview-default.gif); }
+.treeview li.lastCollapsable, .treeview li.lastExpandable { background-image: url("../images/glyphicons-halflings.png"); }
 .treeview li.lastCollapsable { background-position: 0 -111px }
 .treeview li.lastExpandable { background-position: -32px -67px }
 
-.treeview div.lastCollapsable-hitarea, .treeview div.lastExpandable-hitarea { background-position: 0; }
+.treeview div.lastCollapsable-hitarea, .treeview div.lastExpandable-hitarea { background-position: -240px -144px; }
+.treeview div.lastCollapsable-hitarea{background-position: -312px -144px;}
 
 .treeview-red li { background-image: url(../images/treeview-red-line.gif); }
 .treeview-red .hitarea, .treeview-red li.lastCollapsable, .treeview-red li.lastExpandable { background-image: url(../images/treeview-red.gif); }
